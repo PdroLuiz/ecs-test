@@ -10,8 +10,12 @@ app.get("/", (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
+if (PORT != null) {
+  app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}`);
+  });
+} else {
+  throw new Error("PORT is undefined");
+}
 
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
